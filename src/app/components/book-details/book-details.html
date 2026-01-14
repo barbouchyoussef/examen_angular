@@ -1,0 +1,22 @@
+<div class="modal" *ngIf="book">
+  <div class="modal-content">
+
+    <span class="close" (click)="closeModal()">&times;</span>
+
+    <div class="modal-body">
+      <img [src]="getCoverUrl(book.cover_id)" alt="{{ book.title }} Cover">
+
+      <div class="modal-text">
+        <h2>{{ book.title || 'Titre non disponible' }}</h2>
+        <h3 *ngIf="book.subtitle">{{ book.subtitle }}</h3>
+
+        <p><strong>Année de première édition :</strong> {{ book.first_publish_year || 'N/A' }}</p>
+        <p><strong>Description :</strong> {{ book.description || 'Description non disponible' }}</p>
+
+        <button (click)="toggleWishlist(book)" [class.active]="isInWishlist(book)">
+          {{ isInWishlist(book) ? 'Retirer de la Wishlist' : 'Ajouter à la Wishlist' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

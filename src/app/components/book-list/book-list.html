@@ -1,0 +1,33 @@
+<app-search-bar 
+  (titleSearch)="onTitleSearch($event)" 
+  (yearSearch)="onYearSearch($event)">
+</app-search-bar>
+
+<div class="book-list">
+  <div *ngFor="let book of filteredBooksList" class="book-card">
+
+    <!-- Wishlist icône en haut droite -->
+    <div class="wishlist-icon" (click)="toggleWishlist(book); $event.stopPropagation()">
+      <i class="bi" [ngClass]="isInWishlist(book) ? 'bi-heart-fill text-danger' : 'bi-heart'"></i>
+    </div>
+
+    <!-- Carte du livre cliquable -->
+    <div class="book-link" (click)="openBookDetails(book)">
+      <img [src]="getCoverUrl(book.cover_id)" alt="{{ book.title }} Cover">
+      <h3>{{ book.title }}</h3>
+      <p *ngIf="book.subtitle">{{ book.subtitle }}</p>
+    </div>
+  </div>
+
+  <!-- Message si aucun livre trouvé -->
+  <p *ngIf="filteredBooksList.length === 0" style="text-align:center; width:100%">
+    Aucun livre trouvé
+  </p>
+</div>
+
+<!-- Modal détails du livre -->
+<app-book-details 
+  *ngIf="selectedBookKey" 
+  [bookKey]="selectedBookKey" 
+  (close)="closeBookDetails()">
+</app-book-details>

@@ -1,0 +1,7 @@
+.search-bar {
+  margin-bottom: 1rem; /* espace avec la liste des livres */
+}
+
+.search-item input {
+  min-width: 150px; /* largeur minimale */
+}

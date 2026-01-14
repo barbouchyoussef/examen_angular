@@ -1,0 +1,22 @@
+<header class="head-bar bg-primary text-light py-3 d-flex justify-content-between align-items-center px-3">
+  <h1 class="m-0 fs-3">Open Library App</h1>
+
+  <!-- Bouton Wishlist -->
+  <div class="wishlist-container position-relative">
+    <button class="btn btn-light text-danger" (click)="toggleDropdown()">
+      <i class="bi bi-heart-fill"></i> Wishlist ({{ wishlist.length }})
+    </button>
+
+    <!-- Dropdown Wishlist -->
+    <div *ngIf="showDropdown" class="wishlist-dropdown position-absolute bg-white border rounded p-2">
+      <div *ngIf="wishlist.length === 0" class="p-2 text-center text-muted">
+        Aucun livre dans la wishlist
+      </div>
+      <div *ngFor="let book of wishlist" class="wishlist-item d-flex align-items-center mb-2">
+        <img [src]="book.cover_id ? 'https://covers.openlibrary.org/b/id/' + book.cover_id + '-S.jpg' : 'assets/no-cover.png'"
+             alt="{{ book.title }} Cover" class="me-2" width="40" height="60" style="object-fit: cover;">
+        <span>{{ book.title }}</span>
+      </div>
+    </div>
+  </div>
+</header>

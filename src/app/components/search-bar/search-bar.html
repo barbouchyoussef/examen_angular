@@ -1,0 +1,19 @@
+<div class="search-bar d-flex flex-wrap align-items-center gap-2 p-3 bg-light rounded shadow-sm">
+  
+  <div class="search-item flex-grow-1">
+    <input type="text"
+           class="form-control"
+           placeholder="Rechercher par titre..."
+           [(ngModel)]="searchTitle"
+           (input)="onTitleChange()">
+  </div>
+
+  <div class="search-item d-flex align-items-center gap-2">
+    <input type="number"
+           class="form-control"
+           placeholder="Filtrer par année"
+           [(ngModel)]="searchYear">
+    <button class="btn btn-primary" (click)="onYearSearch()">Filtrer</button>
+  </div>
+
+</div>

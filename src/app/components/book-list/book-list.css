@@ -1,0 +1,150 @@
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* largeur des cards 220px, adaptable */
+  gap: 1.5rem; /* espace entre les cartes */
+  padding: 1rem;
+  justify-items: center; /* centre les cards dans chaque colonne */
+}
+
+.book-card {
+  width: 220px; /* largeur augmentée */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  background-color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.book-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.book-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.book-card h3 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.book-card p {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+/* Overlay modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem; /* espace autour du modal */
+}
+
+/* Contenu du modal */
+.modal-content {
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  max-width: 1000px; /* largeur augmentée */
+  width: 95%;         /* presque toute la page */
+  max-height: 90%;
+  overflow-y: auto;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap; /* pour responsive */
+  gap: 2rem;
+  position: relative;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.35);
+}
+
+/* Bouton fermer */
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Image du livre */
+.modal-content img {
+  flex: 0 0 300px; /* largeur augmentée */
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Texte du livre */
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: #222;
+}
+
+.modal-content h3 {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.modal-content p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Container pour texte à côté de l'image */
+.modal-text {
+  flex: 1; /* prend le reste de l'espace */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 600px) {
+  .modal-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .modal-content img {
+    width: 80%;
+  }
+
+  .modal-text {
+    width: 100%;
+  }
+}
+.wishlist-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 2;
+}
