@@ -25,11 +25,18 @@ export class BookList implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bookService.getBooks().subscribe((data) => {
-      this.booksList = Array.from(new Map(data.map(b => [b.key, b])).values());
-      this.filteredBooksList = [...this.booksList];
-    });
-  }
+  this.bookService.getBooks().subscribe((data) => {
+    this.booksList = Array.from(new Map(data.map(b => [b.key, b])).values());
+    this.filteredBooksList = [...this.booksList];
+  });
+
+  // Événement pour ouvrir BookDetails depuis wishlist
+  window.addEventListener('openBookDetails', (e: any) => {
+    const book: Book = e.detail;
+    this.openBookDetails(book);
+  });
+}
+
 
   onTitleSearch(title: string) {
     this.filteredBooksList = this.booksList.filter((book) =>

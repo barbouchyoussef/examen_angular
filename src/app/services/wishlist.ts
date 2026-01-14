@@ -10,32 +10,28 @@ export class WishlistService {
     this.wishlist = stored ? JSON.parse(stored) : [];
   }
 
-  // Retourne toute la wishlist
   getWishlist(): Book[] {
     return this.wishlist;
   }
 
-  // Ajouter un livre
   addToWishlist(book: Book) {
-    if (!this.isInWishlist(book)) {
+    if (!this.wishlist.find(b => b.key === book.key)) {
       this.wishlist.push(book);
       this.save();
     }
   }
 
-  // Retirer un livre
   removeFromWishlist(book: Book) {
     this.wishlist = this.wishlist.filter(b => b.key !== book.key);
     this.save();
   }
 
-  // Vérifie si le livre est déjà dans la wishlist
-  isInWishlist(book: Book): boolean {
-    return this.wishlist.some(b => b.key === book.key);
+  save() {
+    localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
+    window.dispatchEvent(new Event('storage')); // pour mise à jour dynamique
   }
 
-  // Sauvegarder dans localStorage
-  private save() {
-    localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
+  isInWishlist(book: Book): boolean {
+    return this.wishlist.some(b => b.key === book.key);
   }
 }

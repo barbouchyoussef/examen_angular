@@ -3,15 +3,22 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
+/* Dropdown wishlist */
 .wishlist-dropdown {
   position: absolute;
   top: 100%;
   right: 0;
-  width: 200px;
-  max-height: 300px;
+  width: 350px;           /* augmenté de 280px à 350px */
+  max-height: 400px;      /* scroll si trop de livres */
   overflow-y: auto;
-  z-index: 10;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 0.5rem;
+  z-index: 1000;
 }
+
 
 .wishlist-item {
   padding: 5px 10px;
@@ -20,4 +27,8 @@
 
 .wishlist-item:hover {
   background-color: #f0f0f0;
+}
+.wishlist-item span {
+  color: #000; /* noir */
+  font-weight: 500; /* optionnel : un peu plus visible */
 }

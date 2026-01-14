@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WishlistService } from '../../services/wishlist';
+import { Book } from '../../interfaces/book';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -12,19 +13,33 @@ import { RouterModule } from '@angular/router';
 })
 export class HeadBar {
   showDropdown = false;
-  wishlist: any[] = []; // on initialise vide d'abord
+  wishlist: Book[] = [];
 
   constructor(private wishlistService: WishlistService) {
-    // Récupérer la wishlist au démarrage
-    this.wishlist = this.wishlistService.getWishlist();
+    this.loadWishlist();
 
-    // Écoute le storage pour mettre à jour dynamiquement la wishlist
-    window.addEventListener('storage', () => {
-      this.wishlist = this.wishlistService.getWishlist();
-    });
+    // Mise à jour dynamique si le storage change
+    window.addEventListener('storage', () => this.loadWishlist());
+  }
+
+  loadWishlist() {
+    this.wishlist = this.wishlistService.getWishlist();
   }
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
+  }
+
+  removeBook(book: Book) {
+    this.wishlistService.removeFromWishlist(book);
+    this.loadWishlist();
+  }
+
+  openBook(book: Book) {
+    // Émettre un événement global pour BookList
+    const event = new CustomEvent('openBookDetails', { detail: book });
+    window.dispatchEvent(event);
+
+    this.showDropdown = false; // fermer le dropdown
   }
 }
